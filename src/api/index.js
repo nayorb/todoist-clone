@@ -19,6 +19,6 @@ const getResources = (resources = ['all']) => {
 	})
 }
 
-getResources(['projects', 'items']).then(data => {
-	console.log(data)
-})
+export default {
+	getResources,
+}
