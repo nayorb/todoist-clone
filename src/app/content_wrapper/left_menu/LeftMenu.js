@@ -1,20 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Projects from '../../../components/projects/Projects'
+import Projects from './projects/Projects'
 import COLORS from '../../../constants/colors'
 import { useSelector } from 'react-redux'
+import Labels from './labels/Labels'
+import Filters from './filters/Filters'
 
 const StyledMenu = styled.menu`
 	user-select: none !important;
+	height: calc(100vh - 50px);
 	width: 266px;
-	height: calc(100vh - 10px);
+	margin: 0;
 	padding-top: 74px;
 	padding-left: 32px;
 	margin-left: -32px;
 	position: fixed;
 	overflow-x: hidden;
 	/* overflow-y: hidden; */
+	/* overflow-y: scroll !important; */
 	border-right: 1px solid #f1f1f1;
 	background-color: ${COLORS.GREY_LIGHTEST};
 
@@ -46,6 +50,8 @@ function LeftMenu() {
 	return (
 		<StyledMenu style={isMenuOpened ? isOpenedStyle : {}}>
 			<Projects />
+			<Labels />
+			<Filters />
 		</StyledMenu>
 	)
 }

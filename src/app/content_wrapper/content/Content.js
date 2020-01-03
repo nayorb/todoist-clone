@@ -1,6 +1,9 @@
 import React from 'react'
 
 import styled from 'styled-components'
+import HeaderContainer from './HeaderContainer'
+import SectionListContainer from './todos/sections/SectionListContainer'
+import ItemsContainer from './todos/items/ItemsContainer'
 
 const StyledContent = styled.main`
 	min-height: 380px;
@@ -24,8 +27,23 @@ const StyledContent = styled.main`
 	}
 `
 
+const Editor = styled.div`
+	vertical-align: top;
+	padding-left: 44px;
+	padding-right: 14px;
+	padding-top: 80px;
+	padding-bottom: 84px;
+`
+
 function Content() {
-	return <StyledContent>Content</StyledContent>
+	return (
+		<StyledContent>
+			<Editor>
+				<HeaderContainer />
+				<ItemsContainer />
+			</Editor>
+		</StyledContent>
+	)
 }
 
 export default Content
