@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 function ItemContainer({ item }) {
 	const labels = useSelector(state =>
-		state.labels.filter(l => item.labels.includes(l.id))
+		state.labels.filter(l => (item.labels ? item.labels.includes(l.id) : false))
 	)
 	return <Item item={item} labels={labels} />
 }

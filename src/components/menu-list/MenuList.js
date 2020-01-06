@@ -5,6 +5,7 @@ import { useSpring, animated } from 'react-spring'
 
 import { selectMenuItem } from '../../actions/app'
 import MenuListHeader from './MenuListHeader'
+import { useHistory } from 'react-router-dom'
 
 const StyledList = styled(animated.ul)`
 	width: 265px;
@@ -40,6 +41,7 @@ const StyledItem = styled.li`
 `
 
 function MenuList({ items, type, header, renderItem }) {
+	const history = useHistory()
 	const dispatch = useDispatch()
 	const selectedItem = useSelector(state => state.app.selectedMenuItem)
 	const [isHeaderOpened, setIsHeaderOpened] = useState(false)
@@ -59,7 +61,10 @@ function MenuList({ items, type, header, renderItem }) {
 					<StyledItem
 						selected={selectedItem.type === type && selectedItem.id === item.id}
 						key={item.id}
-						onClick={() => dispatch(selectMenuItem(type, item.id, item))}
+						onClick={() => {
+							dispatch(selectMenuItem(type, item.id, item))
+							history.push(`/${type}/${item.id}`)
+						}}
 					>
 						{renderItem && renderItem(item)}
 					</StyledItem>

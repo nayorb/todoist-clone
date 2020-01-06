@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import { initAppAction } from './actions/app'
 import './api'
@@ -24,12 +25,14 @@ function App() {
 	const dispatch = useDispatch()
 	dispatch(initAppAction())
 	return (
-		<AppHolder>
-			<Header />
-			<ContentWrapper />
+		<Router>
+			<AppHolder>
+				<Header />
+				<ContentWrapper />
 
-			{isMenuOpened ? <LeftMenuOverlay /> : null}
-		</AppHolder>
+				{isMenuOpened ? <LeftMenuOverlay /> : null}
+			</AppHolder>
+		</Router>
 	)
 }
 

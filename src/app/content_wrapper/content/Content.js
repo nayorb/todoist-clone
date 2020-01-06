@@ -1,46 +1,20 @@
 import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 
-import styled from 'styled-components'
-import HeaderContainer from './HeaderContainer'
-import SectionListContainer from './todos/sections/SectionListContainer'
-import ItemsContainer from './todos/items/ItemsContainer'
-
-const StyledContent = styled.main`
-	min-height: 380px;
-	background-color: #fff;
-	margin-left: 266px;
-	border-right: 1px solid #f1f1f1;
-	min-height: calc(100vh);
-	-webkit-transition: opacity 250ms cubic-bezier(0.4, 0, 0.6, 1);
-	transition: opacity 250ms cubic-bezier(0.4, 0, 0.6, 1);
-
-	@media (max-width: 930px) {
-		width: calc(100vw - 266px - 42px);
-		margin-left: 308px;
-	}
-
-	@media (max-width: 750px) {
-		margin-left: 0;
-		width: auto !important;
-		padding: 0;
-		z-index: 100;
-	}
-`
-
-const Editor = styled.div`
-	vertical-align: top;
-	padding-left: 44px;
-	padding-right: 14px;
-	padding-top: 80px;
-	padding-bottom: 84px;
-`
+import { StyledContent, Editor } from './styles'
+import ProjectPage from '../../pages/ProjectPage'
+import LabelPage from '../../pages/LabelPage'
+import FilterPage from '../../pages/FilterPage'
 
 function Content() {
 	return (
 		<StyledContent>
 			<Editor>
-				<HeaderContainer />
-				<ItemsContainer />
+				<Switch>
+					<Route path='/project/:id' component={ProjectPage} />
+					<Route path='/label/:id' component={LabelPage} />
+					<Route path='/filter/:id' component={FilterPage} />
+				</Switch>
 			</Editor>
 		</StyledContent>
 	)

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { getPriorityColors, getItemColor } from '../../../constants/colors'
+import { getItemColor } from '../../../constants/colors'
+import { useHistory } from 'react-router-dom'
 
 const StyledLabelsContainer = styled.div`
 	display: flex;
@@ -12,15 +13,27 @@ const StyledLabelsContainer = styled.div`
 const StyledLabel = styled.div`
 	margin-right: 12px;
 	font-size: 12px;
+	cursor: pointer;
+
+	:hover {
+		text-decoration: underline;
+	}
 
 	${({ color }) => `color: ${getItemColor(color)};`}
 `
 
-function Labels({ labels }) {
+function Labels({ labels = [] }) {
+	const history = useHistory()
 	return (
 		<StyledLabelsContainer>
 			{labels.map(label => (
-				<StyledLabel color={label.color}>{label.name}</StyledLabel>
+				<StyledLabel
+					key={label.id}
+					color={label.color}
+					onClick={() => history.push(`/label/${label.id}`)}
+				>
+					{label.name}
+				</StyledLabel>
 			))}
 		</StyledLabelsContainer>
 	)
