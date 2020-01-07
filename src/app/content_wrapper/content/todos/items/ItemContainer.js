@@ -9,7 +9,6 @@ function ItemContainer({ item, showProject }) {
   const project = useSelector(state =>
     state.projects.find(p => p.id === item.project_id)
   )
-  console.log(showProject, item.content, project)
   return (
     <Item item={item} labels={labels} project={showProject ? project : null} />
   )

@@ -1,32 +1,17 @@
 import React from 'react'
 
-import styled from 'styled-components'
 import PriorityCircle from './priority-circle/PriorityCircle'
 import Labels from './labels/Labels'
 import ProjectDot from '../projects/ProjectDot'
 import { useHistory } from 'react-router-dom'
-
-const StyledItemContainer = styled.div`
-  page-break-inside: avoid;
-  padding: 0 6px 0 0;
-  font-size: 14px;
-  position: relative;
-  border-radius: 3px;
-`
-
-const StyledItemDetails = styled.div`
-  display: flex;
-  padding: 10px 0;
-  font-size: 14px;
-  border-bottom: 1px solid #f0f0f0;
-  line-height: 21px;
-  align-items: baseline;
-`
-const StyledItemActions = styled.div`
-  display: flex;
-  align-items: center;
-  height: 20px;
-`
+import {
+  StyledItemContainer,
+  StyledItemDetails,
+  StyledActionsContainer,
+  StyledActions,
+  StyledProject,
+} from './styles'
+import ItemActions from './actions/ItemActions'
 
 function Item({ item, labels, project }) {
   const history = useHistory()
@@ -38,9 +23,12 @@ function Item({ item, labels, project }) {
           <div>{item.content}</div>
           <Labels labels={labels} />
         </div>
-        <StyledItemActions>
+        <StyledActionsContainer>
+          <StyledActions>
+            <ItemActions />
+          </StyledActions>
           {project ? (
-            <>
+            <StyledProject>
               <div
                 style={{ marginRight: '5px', cursor: 'pointer' }}
                 onClick={() => history.push(`/project/${project.id}`)}
@@ -48,9 +36,9 @@ function Item({ item, labels, project }) {
                 {project.name}
               </div>
               <ProjectDot project={project} />
-            </>
+            </StyledProject>
           ) : null}
-        </StyledItemActions>
+        </StyledActionsContainer>
       </StyledItemDetails>
     </StyledItemContainer>
   )

@@ -5,6 +5,7 @@ import ItemsContainer from '../content_wrapper/content/todos/items/ItemsContaine
 import Header from '../../components/header/Header'
 
 const ConditionObject = ({ condition }) => {
+  console.log(condition)
   return (
     <>
       <Header title={condition.query} />
@@ -29,7 +30,7 @@ function FilterPage({ match }) {
   return (
     <>
       {conditions.map(condition => (
-        <ConditionObject condition={condition} />
+        <ConditionObject condition={condition} key={condition.query} />
       ))}
     </>
   )

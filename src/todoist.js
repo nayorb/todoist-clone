@@ -393,10 +393,20 @@ function Todoist() {
 
     const conditions = query.map(q => {
       const condition = getConditionObject(q)
+      let filteredItems = []
+      if (typeof condition === 'string') {
+        filteredItems = items.filter(item =>
+          isItemInFilterComponent(item, condition)
+        )
+      } else {
+        filteredItems = items.filter(item =>
+          isItemMatchingCondition(item, condition)
+        )
+      }
       return {
         condition,
         query: q,
-        items: items.filter(item => isItemMatchingCondition(item, condition)),
+        items: filteredItems,
       }
     })
 
