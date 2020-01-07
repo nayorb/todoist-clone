@@ -5,34 +5,34 @@ import ItemsContainer from '../content_wrapper/content/todos/items/ItemsContaine
 import Header from '../../components/header/Header'
 
 const ConditionObject = ({ condition }) => {
-	return (
-		<>
-			<Header title={condition.query} />
-			<ItemsContainer items={condition.items} />
-		</>
-	)
+  return (
+    <>
+      <Header title={condition.query} />
+      <ItemsContainer items={condition.items} showProject={true} />
+    </>
+  )
 }
 
 function FilterPage({ match }) {
-	const filterId = parseInt(match.params.id)
-	const app = useSelector(state => state.app.app)
+  const filterId = parseInt(match.params.id)
+  const app = useSelector(state => state.app.app)
 
-	const filter = useSelector(state =>
-		state.filters.find(f => f.id === filterId)
-	)
-	const conditions = useSelector(state =>
-		filter ? app.getFilterItems(state.items, filter) : []
-	)
+  const filter = useSelector(state =>
+    state.filters.find(f => f.id === filterId)
+  )
+  const conditions = useSelector(state =>
+    filter ? app.getFilterItems(state.items, filter) : []
+  )
 
-	console.log(conditions)
+  console.log(conditions)
 
-	return (
-		<>
-			{conditions.map(condition => (
-				<ConditionObject condition={condition} />
-			))}
-		</>
-	)
+  return (
+    <>
+      {conditions.map(condition => (
+        <ConditionObject condition={condition} />
+      ))}
+    </>
+  )
 }
 
 export default FilterPage
