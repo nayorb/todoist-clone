@@ -8,6 +8,7 @@ function* fetchAllResources() {
     let data = yield call(Api.getResources)
     todoist.sync(data)
     data = todoist.data
+    console.log(data)
     yield put({ type: 'FULL_SYNC_SUCCEEDED', payload: data })
   } catch (e) {
     yield put({ type: 'FULL_SYNC_FAILED', message: e.message })

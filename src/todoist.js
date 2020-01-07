@@ -62,6 +62,7 @@ function Todoist() {
         item.subProjectsChain = data.projects.find(
           p => p.id === item.project_id
         ).subProjectsChain
+        item.notes = data.notes.filter(n => n.item_id === item.id)
         items.push(item)
       }
 
