@@ -27,6 +27,15 @@ function Todoist() {
       })
     }
     if (data.projects) {
+      let labels = []
+      for (let i = 0; i < data.projects.length; i++) {
+        let label = { ...data.labels[i] }
+        label.items = data.items.filter(i => i.labels.includes(label.id))
+        labels.push(label)
+      }
+      data.labels = labels
+    }
+    if (data.projects) {
       let projects = []
       for (let i = 0; i < data.projects.length; i++) {
         let project = { ...data.projects[i] }
@@ -42,6 +51,7 @@ function Todoist() {
         } else {
           project.subProjectsChain = [project.name]
         }
+        project.items = data.items.filter(i => i.project_id === project.id)
         projects.push(project)
       }
       data.projects = projects

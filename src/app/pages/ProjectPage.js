@@ -10,15 +10,12 @@ function ProjectPage({ match }) {
 
   const project =
     useSelector(state => state.projects.find(p => p.id === projectId)) || {}
-  const items = useSelector(state =>
-    state.items.filter(i => i.project_id === projectId && i.section_id === null)
-  )
-  console.log(items)
+  console.log(project.items)
 
   return (
     <>
       <Header title={project.name} />
-      <ItemsContainer items={items} />
+      <ItemsContainer items={project.items} />
       <SectionListContainer projectId={projectId} />
     </>
   )
