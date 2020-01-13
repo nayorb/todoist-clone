@@ -14,15 +14,12 @@ const ConditionObject = ({ condition }) => {
   )
 }
 
-function FilterPage({ match }) {
-  const filterId = parseInt(match.params.id)
+function SearchPage({ match }) {
+  const query = match.params.query
   const app = useSelector(state => state.app.app)
 
-  const filter = useSelector(state =>
-    state.filters.find(f => f.id === filterId)
-  )
   const conditions = useSelector(state =>
-    filter ? app.getFilterItems(state.items, filter.query) : []
+    app.getFilterItems(state.items, query)
   )
 
   console.log(conditions)
@@ -36,4 +33,4 @@ function FilterPage({ match }) {
   )
 }
 
-export default FilterPage
+export default SearchPage

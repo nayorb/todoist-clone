@@ -26,9 +26,9 @@ function Todoist() {
         return a.item_order - b.item_order
       })
     }
-    if (data.projects) {
+    if (data.labels) {
       let labels = []
-      for (let i = 0; i < data.projects.length; i++) {
+      for (let i = 0; i < data.labels.length; i++) {
         let label = { ...data.labels[i] }
         label.items = data.items.filter(i => i.labels.includes(label.id))
         labels.push(label)
@@ -397,12 +397,10 @@ function Todoist() {
     return left || right
   }
 
-  that.getFilterItems = (items, filter) => {
-    let query = JSON.parse(
-      `["${filter && filter.query.split(',').join('","')}"]`
-    )
+  that.getFilterItems = (items, query) => {
+    let queries = JSON.parse(`["${query.split(',').join('","')}"]`)
 
-    const conditions = query.map(q => {
+    const conditions = queries.map(q => {
       const condition = getConditionObject(q)
       let filteredItems = []
       if (typeof condition === 'string') {
